@@ -13,7 +13,8 @@ build-push-case-1:
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
     - docker build -t $DOCKER_LOGIN/myairflow:$CI_COMMIT_SHORT_SHA -t $DOCKER_LOGIN/myairflow:latest .
-    - docker push $DOCKER_LOGIN/myairflow:$CI_COMMIT_SHORT_SHA $DOCKER_LOGIN/myairflow:latest
+    - docker push $DOCKER_LOGIN/myairflow:$CI_COMMIT_SHORT_SHA
+    - docker push $DOCKER_LOGIN/myairflow:latest
   only:
     - /^feature\//
 

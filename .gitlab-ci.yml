@@ -12,8 +12,8 @@ build-push-case-1:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t myairflow:$CI_COMMIT_SHORT_SHA -t myairflow:latest .
-    - docker push myairflow:$CI_COMMIT_SHORT_SHA
+    - docker build -t $DOCKER_LOGIN/myairflow:$CI_COMMIT_SHORT_SHA -t $DOCKER_LOGIN/myairflow:latest .
+    - docker push $DOCKER_LOGIN/myairflow:$CI_COMMIT_SHORT_SHA
   only:
     - /^feature\//
 
@@ -24,8 +24,8 @@ build-push-case-2:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t myairflow:$CI_PIPELINE_ID .
-    - docker push myairflow:$CI_PIPELINE_ID
+    - docker build -t $DOCKER_LOGIN/myairflow:$CI_PIPELINE_ID .
+    - docker push $DOCKER_LOGIN/myairflow:$CI_PIPELINE_ID
   only:
     variables:
       - $CI_COMMIT_MESSAGE =~ /Merge.+branch\s(.*)\sinto(main)/
@@ -37,8 +37,8 @@ build-push-case-3:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t myairflow:$CI_BRANCH_TAG .
-    - docker push myairflow:$CI_BRANCH_TAG
+    - docker build -t $DOCKER_LOGIN/myairflow:$CI_BRANCH_TAG .
+    - docker push $DOCKER_LOGIN/myairflow:$CI_BRANCH_TAG
   only:
   - tags
   except:

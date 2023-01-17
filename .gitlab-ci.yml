@@ -38,4 +38,4 @@ build-push-case-3:
   only:
   - tags
   except:
-    - /^(?!master).+@/
+    - ^(?!master).+@

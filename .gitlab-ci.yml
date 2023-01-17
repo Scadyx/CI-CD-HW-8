@@ -1,0 +1,41 @@
+stages:
+  - build
+
+build-push-case-1:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    - docker build -t $CI_COMMIT_SHORT_SHA -t latest /airflow
+    - docker push
+  only:
+    - /^feature\//
+
+build-push-case-2:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    - docker build -t $CI_PIPELINE_ID
+    - docker push
+  only:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /Merge.+branch\s(.*)\sinto(master)/
+
+build-push-case-3:
+  stage: build
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
+    - docker build -t $CI_PIPELINE_ID
+    - docker push
+  only:
+  - tags
+  except:
+    - /^(?!master).+@/

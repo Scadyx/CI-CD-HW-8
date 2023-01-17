@@ -43,4 +43,3 @@ build-push-case-3:
   - tags
   except:
     - ^(?!main).+@
-

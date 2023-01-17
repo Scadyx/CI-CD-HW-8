@@ -37,8 +37,8 @@ build-push-case-3:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t $DOCKER_LOGIN/myairflow:$CI_BRANCH_TAG .
-    - docker push $DOCKER_LOGIN/myairflow:$CI_BRANCH_TAG
+    - docker build -t $DOCKER_LOGIN/myairflow:$CI_COMMIT_TAG .
+    - docker push $DOCKER_LOGIN/myairflow:$CI_COMMIT_TAG
   only:
   - tags
   except:

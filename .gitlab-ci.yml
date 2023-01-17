@@ -13,7 +13,7 @@ build-push-case-1:
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
     - docker build -t $CI_COMMIT_SHORT_SHA -t latest .
-    - docker push
+    - docker push $CI_COMMIT_SHORT_SHA
   only:
     - /^feature\//
 
@@ -25,7 +25,7 @@ build-push-case-2:
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
     - docker build -t $CI_PIPELINE_ID .
-    - docker push
+    - docker push $CI_PIPELINE_ID
   only:
     variables:
       - $CI_COMMIT_MESSAGE =~ /Merge.+branch\s(.*)\sinto(main)/
@@ -37,8 +37,8 @@ build-push-case-3:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t $CI_PIPELINE_ID .
-    - docker push
+    - docker build -t $CI_BRANCH_TAG .
+    - docker push $CI_BRANCH_TAG
   only:
   - tags
   except:

@@ -12,7 +12,7 @@ build-push-case-1:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t $CI_COMMIT_SHORT_SHA -t latest /airflow
+    - docker build -t $CI_COMMIT_SHORT_SHA -t latest .
     - docker push
   only:
     - /^feature\//
@@ -24,7 +24,7 @@ build-push-case-2:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t $CI_PIPELINE_ID
+    - docker build -t $CI_PIPELINE_ID .
     - docker push
   only:
     variables:
@@ -37,7 +37,7 @@ build-push-case-3:
     - docker:dind
   script:
     - docker login -u $DOCKER_LOGIN -p $DOCKER_PASSWORD
-    - docker build -t $CI_PIPELINE_ID
+    - docker build -t $CI_PIPELINE_ID .
     - docker push
   only:
   - tags

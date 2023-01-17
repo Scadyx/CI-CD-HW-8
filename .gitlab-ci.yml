@@ -24,7 +24,7 @@ build-push-case-2:
     - docker push
   only:
     variables:
-      - $CI_COMMIT_MESSAGE =~ /Merge.+branch\s(.*)\sinto(master)/
+      - $CI_COMMIT_MESSAGE =~ /Merge.+branch\s(.*)\sinto(main)/
 
 build-push-case-3:
   stage: build
@@ -38,4 +38,4 @@ build-push-case-3:
   only:
   - tags
   except:
-    - ^(?!master).+@
+    - ^(?!main).+@

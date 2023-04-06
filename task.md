@@ -1,14 +1,3 @@
-Topic: CI/CD
-
-Дата видачі: 11.01.2023
-
-Дата здачі: 18.01.2023
-
-Максимальна оцінка: 100 балів
-
-Індивідуальне виконання
-
-Результатом домашнього завдання стане Docker image, що автоматично збирається, для Airflow PM Academy Gitlab CI/CD practice.
 
 Tasks:
 Create new gitlab repository
